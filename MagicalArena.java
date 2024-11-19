@@ -1,5 +1,5 @@
 import java.util.*;
-public class main{
+public class MagicalArena{
     public static void main(String[] args) {
         // Initialize scanner for user input
         Scanner scanner = new Scanner(System.in);
