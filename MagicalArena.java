@@ -6,40 +6,44 @@ public class MagicalArena{
 
         // Prompt for Player 1's name
         System.out.print("Enter Player 1's name: ");
-        String player1 = scanner.nextLine();
+        String player1Name = scanner.nextLine();
 
         // Prompt for Player 2's name
         System.out.print("Enter Player 2's name: ");
-        String player2 = scanner.nextLine();
+        String player2Name = scanner.nextLine();
 
-        // Default health for both players
-        int player1Health = 100;
-        int player2Health = 100;
-
-        // Random generator
+         // Random generator
         Random random = new Random();
 
-        // Generate Player 1's attributes
-        int player1Strength = random.nextInt(11) + 10; // Strength: 10 to 20
-        int player1Attack = random.nextInt(player1Strength - 10) + 10; // Attack: 10 to (strength - 1)
+        Player player1 = new Player(
+            player1Name,
+            100,
+            random.nextInt(11) + 10, // Strength between 10 and 20
+            0 // Placeholder for attack
+        );
+        player1.setPlayerAttack(random.nextInt(player1.getPlayerStrength() - 1) + 1); // Attack less than strength
 
-        // Generate Player 2's attributes
-        int player2Strength = random.nextInt(11) + 10; // Strength: 10 to 20
-        int player2Attack = random.nextInt(player2Strength - 10) + 10; // Attack: 10 to (strength - 1)
+        Player player2 = new Player(
+            player2Name,
+            100,
+            random.nextInt(11) + 10, // Strength between 10 and 20
+            0 // Placeholder for attack
+        );
+        player2.setPlayerAttack(random.nextInt(player2.getPlayerStrength() - 1) + 1); // Attack less than strength
 
         // Display welcome message and player details
         System.out.println("\nWelcome to the Magical Arena!");
         System.out.println("Here are the player details:");
 
-        System.out.println("\nPlayer 1: " + player1);
-        System.out.println(" - Health: " + player1Health);
-        System.out.println(" - Strength: " + player1Strength);
-        System.out.println(" - Attack: " + player1Attack);
+        System.out.println("\nPlayer 1: " + player1.getPlayerName());
+        System.out.println(" - Health: " + player1.getPlayerHealth());
+        System.out.println(" - Strength: " + player1.getPlayerStrength());
+        System.out.println(" - Attack: " + player1.getPlayerAttack());
 
-        System.out.println("\nPlayer 2: " + player2);
-        System.out.println(" - Health: " + player2Health);
-        System.out.println(" - Strength: " + player2Strength);
-        System.out.println(" - Attack: " + player2Attack);
+        System.out.println("\nPlayer 1: " + player2.getPlayerName());
+        System.out.println(" - Health: " + player2.getPlayerHealth());
+        System.out.println(" - Strength: " + player2.getPlayerStrength());
+        System.out.println(" - Attack: " + player2.getPlayerAttack());
 
         // Close the scanner to free resources
         scanner.close();
