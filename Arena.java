@@ -9,7 +9,7 @@ public class Arena {
         this.players = new Player[]{player1,player2};
         this.dice = new Dice();
         this.attackerIndex = 0;
-        this.defenderIndex = 0;
+        this.defenderIndex = 1;
     }
 
     // check player health to continue game to next round
@@ -17,11 +17,48 @@ public class Arena {
         return players[0].getPlayerHealth()<=0 || players[1].getPlayerHealth()<=0;
     }
 
+    // perform a battle round
+    public void performBattle(){
+        Player attacker = players[attackerIndex];
+        Player defender = players[defenderIndex];
+
+        // roll the dice for attack and defend
+        int attackRoll = dice.roll();
+        int defendRoll = dice.roll();
+
+        // calculate attack and defend power
+        int attackPower = attackRoll*attacker.getPlayerAttack();
+        int defendPower = defendRoll*defender.getPlayerStrength();
+
+        // calculate damage
+        int damage = Math.max(0, attackPower-defendPower);
+
+        // Apply damage to defender
+        defender.setPlayerHealth(defender.getPlayerHealth()-damage);
+
+        // Display the round's result
+        System.out.println("\n" + attacker.getPlayerName() + " attacks!");
+        System.out.println(" - Attack Roll: " + attackRoll + " | Attack Power: " + attackPower);
+        System.out.println(defender.getPlayerName() + " defends!");
+        System.out.println(" - Defense Roll: " + defendRoll + " | Defense Power: " + defendPower);
+        System.out.println("Damage Dealt: " + damage);
+        System.out.println(defender.getPlayerName() + "'s Remaining Health: " + defender.getPlayerHealth());
+    }
+
+        // Swap attacker and defender for the next round
+    public void swapPlayers(){
+        int temp = attackerIndex;
+        attackerIndex = defenderIndex;
+        defenderIndex = temp;
+    }
+
     // start the game
     public void playGame(){
         System.out.println("\n--- The Battle Begins! ---");
         while (!GameOver()) {
-            System.out.println("Continue battle");
+            performBattle();
+            System.out.println("\n Continue battle");
+            swapPlayers();
         }
     }
 }
