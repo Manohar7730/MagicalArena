@@ -52,13 +52,31 @@ public class Arena {
         defenderIndex = temp;
     }
 
+    // Determine the winner
+    private Player determineWinner() {
+        if (players[0].getPlayerHealth() > 0) {
+            return players[0];
+        } else if (players[1].getPlayerHealth() > 0) {
+            return players[1];
+        } else {
+            return null; // Draw (unlikely with current logic)
+        }
+    }
+
     // start the game
     public void playGame(){
         System.out.println("\n--- The Battle Begins! ---");
         while (!GameOver()) {
             performBattle();
-            System.out.println("\n Continue battle");
             swapPlayers();
         }
+
+        // Determine and announce the winner
+        Player winner = determineWinner();
+        if (winner != null) {
+        System.out.println("\nGame Over! The winner is: " + winner.getPlayerName());
+        } else {
+            System.out.println("\nGame Over! It's a draw!");
+        }    
     }
 }
