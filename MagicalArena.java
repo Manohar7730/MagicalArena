@@ -45,6 +45,9 @@ public class MagicalArena{
         System.out.println(" - Strength: " + player2.getPlayerStrength());
         System.out.println(" - Attack: " + player2.getPlayerAttack());
 
+        Arena arena = new Arena(player1, player2);
+        arena.playGame();
+
         // Close the scanner to free resources
         scanner.close();
     }
