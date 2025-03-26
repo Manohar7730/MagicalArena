@@ -47,6 +47,17 @@
    javac *.java
 3. **Run the game**
    Execute the MagicalArena class to start the game:
+
+# Magical Arena
+## Overview
+A Java-based console game simulating battles using OOP principles.
+## Tech Stack
+- Java
+## Features
+- Player battles with dice rolls, OOP design (encapsulation, inheritance)
+## Setup
+1. Clone: `git clone https://github.com/Manohar7730/Magical-Arena`
+2. Run: `javac Main.java && java Main`
    ```bash
    java MagicalArena
 4. **Enter player names**
